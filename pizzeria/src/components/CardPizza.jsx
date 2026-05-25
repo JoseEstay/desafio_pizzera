@@ -5,12 +5,16 @@ function CardPizza (props) {
       <div className='card-body'>
         <h5 className='card-title'>Pizza {props.name}</h5>
         <hr />
-        <p><b>Ingredientes:</b></p>
-        <ul style={{ listStyle: 'none', padding: '0' }}>
-          {props.ingredients.map((ingrediente, index) => (
-            <li key={index} className='ingrediente-item'>🍕 {ingrediente}</li>
-          ))}
-        </ul>
+
+        <div className='text-center'>
+          <p><b>Ingredientes:</b></p>
+          <ul style={{ listStyle: 'none', padding: '0' }}>
+            {props.ingredients.map((ingrediente, index) => (
+              <li key={index} className='ingrediente-item'>🍕 {ingrediente}</li>
+            ))}
+          </ul>
+        </div>
+
         <hr />
         <h4 className='text-center'>Precio: ${props.price.toLocaleString('es-CL')}</h4>
         <br />
