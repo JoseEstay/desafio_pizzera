@@ -3,6 +3,7 @@ function Header () {
     <div style={{
       backgroundImage: "url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000')",
       backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
       padding: '60px',
       textAlign: 'center',
       color: 'white',
