@@ -3,7 +3,7 @@ import CardPizza from './CardPizza'
 
 import imgNapolitana from '../assets/img/napolitana.jpg'
 import imgPepperoni from '../assets/img/pepperoni.jpg'
-import imgEspanola from '../assets/img/espanola'
+import imgEspanola from '../assets/img/espanola.jpg'
 
 function Home () {
   return (
