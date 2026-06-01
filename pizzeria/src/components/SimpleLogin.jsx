@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import './SimpleLogin.css';
 const SimpleLogin = () => {
 
     const [dataClient, setDataClient] = useState({
         email: "",
         password: "",
+        confirmPassword: "",
     })
 
     const handleChange = (e) => {
@@ -18,11 +18,16 @@ const SimpleLogin = () => {
 
     const handleSubmit = (e) => {
      
-        const {password} = dataClient
+        const {password, confirmPassword} = dataClient
         e.preventDefault()
 
-        if (password.length < 5) {
+        if (password.length < 6) {
             alert('La contraseña debe tener al menos mas de 5 caracteres');
+            return;
+        }
+        
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden');
             return;
         }
         
@@ -30,6 +35,7 @@ const SimpleLogin = () => {
         setDataClient({
             email: "",
             password: "",
+            confirmPassword: "",
         })
     }
 
@@ -52,10 +58,18 @@ const SimpleLogin = () => {
     onChange={handleChange}
     >
     </input>
+    <input type="password"
+    name="confirmPassword"
+    value={dataClient.confirmPassword}
+    placeholder='Confirmar contraseña'
+    onChange={handleChange}
+    >
+    </input>
     <button type='submit'>Enviar</button>
     </form>
     </>
   )
 }
+
 
 export default SimpleLogin
