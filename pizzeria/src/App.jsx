@@ -1,12 +1,14 @@
 import Navbar from './components/Navbar'
-import Home from './components/Home'
+{/*import Home from './components/Home'*/}
 import Footer from './components/Footer'
 
+import SimpleLogin from './components/SimpleLogin'
 function App () {
   return (
     <div>
       <Navbar />
-      <Home />
+     {/* <Home /> */}
+      <SimpleLogin />
       <Footer />
     </div>
   )
