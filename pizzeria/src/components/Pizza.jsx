@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
 const Pizza = () => {
-  // El estado inicial puede ser un objeto vacío o null, porque es una sola pizza
   const [pizza, setPizza] = useState(null);
 
   useEffect(() => {
     const getPizza = async () => {
       try {
-        // Fíjate que el endpoint termina en /p001
         const response = await fetch("http://localhost:5000/api/pizzas/p001");
         const data = await response.json();
         setPizza(data);
