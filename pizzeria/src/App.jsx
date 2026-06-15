@@ -12,7 +12,7 @@ function App () {
       <Navbar />
       {/*<Home />  */}
      {/* <SimpleLogin /> */}
-     <Cart />
+     {/*  <Cart /> */}
      <Pizza />
       <Footer />
     </div>
