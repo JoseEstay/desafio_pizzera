@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { pizzaCart } from "./pizzas.js";
+import { pizzaCart } from "../src/components/pizzas.js";
 import "../Cart.css";
 
 function Cart() {

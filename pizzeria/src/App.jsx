@@ -1,19 +1,22 @@
-import Navbar from './components/Navbar'
-{/*import Home from './components/Home' */}
-import Footer from './components/Footer'
-{/*import Cart from './components/Cart' */}
-import Pizza from './components/Pizza'
-{/* import SimpleLogin from './components/SimpleLogin' */}
+import Navbar from './pages/Navbar'
+import Home from './pages/Home' 
+import Footer from './pages/Footer'
+import Cart from './pages/Cart' 
+import Pizza from '../pages/Pizza'
+import SimpleLogin from './pages/SimpleLogin'
+import { Routes, Route } from 'react-router-dom'
 
 function App () {
 
   return (
     <div>
       <Navbar />
-      {/*<Home />  */}
-     {/* <SimpleLogin /> */}
-     {/*  <Cart /> */}
-     <Pizza />
+      <Routes> 
+         <Route path="/" element={<Home />} />
+         <Route path="/cart" element={<Cart />} />
+         <Route path="/pizza" element={<Pizza />} />
+         <Route path="/login" element={<SimpleLogin />} />
+      </Routes>
       <Footer />
     </div>
   )
