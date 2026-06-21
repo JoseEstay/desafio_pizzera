@@ -1,8 +1,8 @@
-import Navbar from './pages/Navbar'
+import Navbar from './components/Navbar'
 import Home from './pages/Home' 
-import Footer from './pages/Footer'
+import Footer from './components/Footer'
 import Cart from './pages/Cart' 
-import Pizza from '../pages/Pizza'
+import Pizza from './pages/Pizza'
 import SimpleLogin from './pages/SimpleLogin'
 import { Routes, Route } from 'react-router-dom'
 
