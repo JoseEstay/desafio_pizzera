@@ -1,32 +1,24 @@
+import { Link } from 'react-router-dom'
+
 function Navbar () {
   const total = 25000
-  const token = false
 
   return (
     <nav className='navbar navbar-dark bg-dark'>
       <div className='container-fluid'>
-        <a className='navbar-brand' href='#'>Pizzería Mamma Mia!</a>
+        <Link className='navbar-brand' to='/'>Pizzería Mamma Mia!</Link>
 
         <div className='d-flex'>
-          <button className='btn btn-outline-light me-2'>🍕 Home</button>
-          {token === true
-            ? (
-              <div>
-                <button className='btn btn-outline-light me-2'>🔓 Profile</button>
-                <button className='btn btn-outline-light me-2'>🔒 Logout</button>
-              </div>
-              )
-            : (
-              <div>
-                <button className='btn btn-outline-light me-2'>🔐 Login</button>
-                <button className='btn btn-outline-light me-2'>🔐 Register</button>
-              </div>
-              )}
+          <Link to='/' className='btn btn-outline-light me-2'>🍕 Home</Link>
+          <Link to='/profile' className='btn btn-outline-light me-2'>🔓 Profile</Link>
+          <Link to='/login' className='btn btn-outline-light me-2'>🔐 Login</Link>
+          <Link to='/register' className='btn btn-outline-light me-2'>🔐 Register</Link>
+          
         </div>
 
-        <button className='btn btn-info text-white'>
+        <Link to='/cart' className='btn btn-info text-white'>
           🛒 Total: ${total.toLocaleString('es-CL')}
-        </button>
+        </Link>
       </div>
     </nav>
   )
