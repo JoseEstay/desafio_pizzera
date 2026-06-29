@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 function CardPizza (props) {
   const { addToCart } = useContext(CartContext)
   
@@ -5,14 +7,14 @@ function CardPizza (props) {
     <div className='card' style={{ width: '100%' }}>
       <img src={props.img} className='card-img-top' alt='pizza' />
       <div className='card-body'>
-        <h5 className='card-title'>Pizza {props.name}</h5>
+        <h5 className='card-title text-capitalize'>Pizza {props.name}</h5>
         <hr />
 
         <div className='text-center'>
           <p><b>Ingredientes:</b></p>
           <ul style={{ listStyle: 'none', padding: '0' }}>
             {props.ingredients.map((ingrediente, index) => (
-              <li key={index} className='ingrediente-item'>🍕 {ingrediente}</li>
+              <li key={index} className='ingrediente-item text-capitalize'>🍕 {ingrediente}</li>
             ))}
           </ul>
         </div>
@@ -22,13 +24,17 @@ function CardPizza (props) {
         <br />
         <div className='d-flex justify-content-between'>
           <button className='btn btn-light btn-sm'>Ver Más 👀</button>
-          <button className='btn btn-dark btn-sm'>Añadir 🛒</button>
+          <button 
+            className='btn btn-dark btn-sm'
+            onClick={() => addToCart({ id: props.id, name: props.name, price: props.price, img: props.img })}
+          >
+            Añadir 🛒
+          </button>
         </div>
       </div>
     </div>
   )
 }
 
-export default CardPizza
-
+export default CardPizza;
 
