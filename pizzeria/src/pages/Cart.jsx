@@ -3,25 +3,7 @@ import { pizzaCart } from "../components/pizzas.js";
 import "../Cart.css";
 
 function Cart() {
-    
-    const [cart, setCart] = useState(pizzaCart);
-
-    
-    const handleIncrease = (id) => {
-        const newCart = cart.map((pizza) => 
-            pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
-        );
-        setCart(newCart);
-    };
-
-    const handleDecrease = (id) => {
-        const newCart = cart.map((pizza) => 
-            pizza.id === id ? { ...pizza, count: pizza.count - 1 } : pizza
-        ).filter((pizza) => pizza.count > 0); 
-        setCart(newCart);
-    };
-
-    const total = cart.reduce((acumulador, pizza) => acumulador + (pizza.price * pizza.count), 0);
+    const {cart, handleIncrease, handleDecrease, total} = useContext(CartContext);
 
     return (
         <div className="container mt-4">

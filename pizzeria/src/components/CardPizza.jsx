@@ -1,4 +1,6 @@
 function CardPizza (props) {
+  const { addToCart } = useContext(CartContext)
+  
   return (
     <div className='card' style={{ width: '100%' }}>
       <img src={props.img} className='card-img-top' alt='pizza' />
