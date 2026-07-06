@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
-
+import { UserContext } from '../context/UserContext' 
 function Navbar () {
   const { total } = useContext(CartContext)
+  const { token, logout } = useContext(UserContext) 
 
   return (
     <nav className='navbar navbar-dark bg-dark'>
@@ -12,10 +13,18 @@ function Navbar () {
 
         <div className='d-flex'>
           <Link to='/' className='btn btn-outline-light me-2'>🍕 Home</Link>
-          <Link to='/profile' className='btn btn-outline-light me-2'>🔓 Profile</Link>
-          <Link to='/login' className='btn btn-outline-light me-2'>🔐 Login</Link>
-          <Link to='/register' className='btn btn-outline-light me-2'>🔐 Register</Link>
           
+          {token ? (
+            <>
+              <Link to='/profile' className='btn btn-outline-light me-2'>🔓 Profile</Link>
+              <button onClick={logout} className='btn btn-outline-light me-2'>🔒 Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to='/login' className='btn btn-outline-light me-2'>🔐 Login</Link>
+              <Link to='/register' className='btn btn-outline-light me-2'>🔐 Register</Link>
+            </>
+          )}
         </div>
 
         <Link to='/cart' className='btn btn-info text-white'>
