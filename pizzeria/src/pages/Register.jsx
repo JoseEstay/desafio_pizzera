@@ -1,80 +1,69 @@
-import { useState } from 'react';
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const Register = () => {
-    const [dataClient, setDataClient] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
-    });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setDataClient((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+  const {register} = useContext(UserContext);
 
-    const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
         e.preventDefault();
-        const { email, password, confirmPassword } = dataClient;
 
-        if (!email || !password || !confirmPassword) {
+        if (!email || !password || !confirm) {
             alert('Todos los campos son obligatorios');
             return;
         }
-
-        if (password.length < 6) {
-            alert('La contraseña debe tener al menos 6 caracteres');
-            return;
-        }
-        
-        if (password !== confirmPassword) {
+       
+        if (password !== confirm) { 
             alert('Las contraseñas no coinciden');
             return;
         }
+
+        await register(email, password);
         
-        alert('Registro exitoso');
-        
-        setDataClient({
-            email: "",
-            password: "",
-            confirmPassword: "",
-        });
+        setEmail("");
+        setPassword("");
+        setConfirm("");
     };
 
-  return (
-    <div className="container mt-5 mb-5 d-flex flex-column align-items-center">
-        <h2>Registro de Usuario</h2>
-        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 w-50 mt-3">
-            <input 
-                type="email"
-                name="email"
-                className="form-control"
-                value={dataClient.email}
-                placeholder='Escribe tu correo'
-                onChange={handleChange}
-            />
-            <input 
-                type="password"
-                name="password"
-                className="form-control"
-                value={dataClient.password}
-                placeholder='Escribir contraseña'
-                onChange={handleChange}
-            />
-            <input 
-                type="password"
-                name="confirmPassword"
-                className="form-control"
-                value={dataClient.confirmPassword}
-                placeholder='Confirmar contraseña'
-                onChange={handleChange}
-            />
-            <button type='submit' className="btn btn-dark">Registrarse</button>
-        </form>
-    </div>
-  );
+    return (
+        <div className="container mt-5 mb-5 d-flex flex-column align-items-center">
+            <h2>Registro de Usuario</h2>
+            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 w-50 mt-3">
+                <input 
+                    type="email"
+                    className="form-control"
+                    value={email}
+                    placeholder='Escribe tu correo'
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input 
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    placeholder='Escribir contraseña'
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <input 
+                    type="password"
+                    className="form-control"
+                    value={confirm}
+                    placeholder='Confirmar contraseña'
+                    onChange={(e) => setConfirm(e.target.value)}
+                    required
+                />
+                <button type='submit' className="btn btn-dark">Registrarse</button>
+            </form>
+        </div>
+    );
 };
 
 export default Register;
+
+
+
+

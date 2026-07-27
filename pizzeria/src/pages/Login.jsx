@@ -1,65 +1,41 @@
-import { useState } from 'react';
+import { useState, useContext} from "react";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
-    const [dataClient, setDataClient] = useState({
-        email: "",
-        password: "",
-    });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setDataClient((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+  const {login} = useContext(UserContext);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const { email, password } = dataClient;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-        if (!email || !password) {
-            alert('Todos los campos son obligatorios');
-            return;
-        }
-
-        if (password.length < 6) {
-            alert('La contraseña debe tener al menos 6 caracteres');
-            return;
-        }
-        
-        alert('Acceso exitoso');
-       
-        setDataClient({
-            email: "",
-            password: "",
-        });
-    };
-
+    await login(email, password);
+  };
   return (
-    <div className="container mt-5 mb-5 d-flex flex-column align-items-center">
-        <h2>Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 w-50 mt-3">
-            <input 
-                type="email"
-                name="email"
+      <div className="container mt-5 mb-5 d-flex flex-column align-items-center">
+          <h2>Iniciar Sesión</h2>
+          <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 w-50 mt-3">
+              <input 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type='email'
                 className="form-control"
-                value={dataClient.email}
                 placeholder='Escribe tu correo'
-                onChange={handleChange}
-            />
-            <input 
-                type="password"
-                name="password"
-                className="form-control"
-                value={dataClient.password}
-                placeholder='Escribir contraseña'
-                onChange={handleChange}
-            />
-            <button type='submit' className="btn btn-dark">Ingresar</button>
-        </form>
-    </div>
-  );
-};
+                required
+              />
+              <input 
+                 value={password}
+                 onChange={(e) => setPassword(e.target.value)}
+                 type='password'
+                 className="form-control"
+                 placeholder='Escribe tu contraseña'
+                 required
+              />
+              <button type='submit' className="btn btn-dark">Ingresar</button>
+          </form>
+      </div>
+    );
+}
 
 export default Login;

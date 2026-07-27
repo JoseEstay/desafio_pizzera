@@ -4,8 +4,30 @@ import { UserContext } from "../context/UserContext";
 import "../Cart.css";
 
 function Cart() {
-    const {cart, handleIncrease, handleDecrease, total} = useContext(CartContext);
-    const { token } = useContext(UserContext); 
+    const { cart, handleIncrease, handleDecrease, total } = useContext(CartContext);
+    const { token } = useContext(UserContext);
+
+    const realizarCompra = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/checkouts",{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            cart: cart,
+          }),
+        });
+        if (response.ok){
+          alert("Compra exitosa");
+        } else {
+          alert("Error en el proceso de compra")
+        }
+      } catch (error) {
+        console.error("Error en checkout:", error);
+      }
+    };
 
     return (
         <div className="container mt-4 mb-5">
@@ -23,9 +45,16 @@ function Cart() {
             ))}
             
             <h3 className="mt-4">Total: ${total.toLocaleString('es-CL')}</h3>
-            <button className="btn btn-dark mt-2" disabled={cart.length === 0 || !token}>Pagar</button>
+            <button 
+                className="btn btn-dark mt-2" 
+                disabled={cart.length === 0 || !token}
+                onClick={realizarCompra}
+            >
+                Pagar
+            </button>
         </div>
     );
 }
 
 export default Cart;
+

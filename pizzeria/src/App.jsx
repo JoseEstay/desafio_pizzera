@@ -18,7 +18,7 @@ function App () {
     <div>
       <Navbar />
       <Routes> 
-         <Route path="/" element={<Home />} />
+       <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
          <Route path="/cart" element={<Cart />} />
          <Route path="/pizza/:id" element={<Pizza />} />
          <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} />
